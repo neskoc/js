@@ -1,0 +1,11 @@
+<div class="dice">
+    <div class="position1 circle"></div>
+    <div class="position2 circle"></div>
+    <div class="position3 circle"></div>
+    <div class="position4 circle"></div>
+    <div class="position5 circle"></div>
+    <div class="position6 circle"></div>
+    <div class="position7 circle"></div>
+    <div class="position8 circle"></div>
+    <div class="position9 circle"></div>
+</div>

@@ -1,0 +1,103 @@
+.dice {
+    display: inline flow-root;
+    position: relative;
+    width: 90px;
+    height: 90px;
+    border: 1px solid;
+    border-radius: 20px;
+    margin: 5px;
+}
+
+.color-red {
+    background-color: red;
+}
+
+.color-blue {
+    background-color: blue;
+}
+
+.color-green {
+    background-color: green;
+}
+
+.color-yellow {
+    background-color: yellow;
+}
+
+.color-black {
+    background-color: black;
+}
+
+.color-orange {
+    background-color: orange;
+}
+
+.color-brown {
+    background-color: brown;
+}
+
+.color-magenta {
+    background-color: magenta;
+}
+
+.color-grey {
+    background-color: grey;
+}
+
+.color-cyan {
+    background-color: cyan;
+}
+
+.circle {
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    height: 16.67%;
+    width: 16.67%;
+    border-radius: 50%;
+}
+
+.position1 {
+    top: 16.67%;
+    left: 16.67%;
+}
+
+.position2 {
+    top: 16.6%;
+    left: 41.67%;
+}
+
+.position3 {
+    top: 16.67%;
+    left: 66.67%;
+}
+
+.position4 {
+    top: 41.67%;
+    left: 16.67%;
+}
+
+.position5 {
+    top: 41.67%;
+    left: 41.67%;
+}
+
+.position6 {
+    top: 41.67%;
+    left: 66.67%;
+}
+
+.position7 {
+    top: 66.67%;
+    left: 16.67%;
+}
+
+.position8 {
+    top: 66.67%;
+    left: 41.67%;
+}
+
+.position9 {
+    top: 66.67%;
+    left: 66.67%;
+}

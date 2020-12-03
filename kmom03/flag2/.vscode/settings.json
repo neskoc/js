@@ -1,0 +1,5 @@
+{
+    "phpsab.executablePathCS": "/Users/nesko/.composer/vendor/bin/phpcs",
+    "phpcs.executablePath": "/Users/nesko/.composer/vendor/bin/phpcs",
+    "phpSniffer.autoDetect": true
+}
