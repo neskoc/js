@@ -180,18 +180,43 @@
         element.style.height = '2px';
     }
 
-    function shiftColor() {
+    function shiftElementColor(element) {
+        let color = element.style["background-color"] || "green";
+        let colorIx = colors.indexOf(color);
+
+        if (colorIx == colors.length - 1) {
+            element.style.backgroundColor = colors[0];
+        } else {
+            element.style.backgroundColor = colors[colorIx + 1];
+        }
+
+    }
+
+    function shiftColorForSelected() {
         let selected = document.querySelectorAll(".selected");
 
         selected.forEach((element) => {
-            let color = element.style["background-color"] || "green";
-            let colorIx = colors.indexOf(color);
+            shiftElementColor(element);
+        });
+    }
 
-            if (colorIx == colors.length - 1) {
-                element.style.backgroundColor = colors[0];
-            } else {
-                element.style.backgroundColor = colors[colorIx + 1];
-            }
+    function changeElementAttributes(element) {
+        let randAttributes = getRandomAttributes(element.clientWidth);
+
+        element.style.backgroundColor = randAttributes.randomColor;
+        element.style.top = randAttributes.topPos;
+        element.style.left = randAttributes.leftPos;
+        element.classList.toggle("circle");
+    }
+
+    function animateSelected() {
+        let selected = document.querySelectorAll(".selected");
+        selected.forEach((element) => {
+            window.setTimeout(changeElementAttributes.bind(null, element, false), 200);
+            window.setTimeout(changeElementAttributes.bind(null, element, false), 400);
+            window.setTimeout(changeElementAttributes.bind(null, element, false), 600);
+            window.setTimeout(changeElementAttributes.bind(null, element, false), 800);
+            window.setTimeout(changeElementAttributes.bind(null, element, false), 1000);
         });
     }
 
@@ -284,7 +309,7 @@
                 resizeElements(key);
                 break;
             case 'r':
-                shiftColor();
+                shiftColorForSelected();
                 break;
             case 't':
                 duplicateSelected();
@@ -297,6 +322,9 @@
                 break;
             case 's':
                 changeZindex(-1);
+                break;
+            case 'd':
+                animateSelected();
                 break;
             case 'arrowup':
             case 'arrowdown':
