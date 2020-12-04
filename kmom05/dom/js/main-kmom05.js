@@ -59,8 +59,8 @@
     function resizeElement(element, key) {
         let clientWidth = parseInt(element.clientWidth),
             clientHeight = parseInt(element.clientHeight),
-            leftPos = parseInt(element.offsetLeft),
-            topPos = parseInt(element.offsetTop);
+            leftPos = parseInt(element.style.left),
+            topPos = parseInt(element.style.top);
 
         browserHeight = parseInt(window.innerHeight);
         browserWidth = parseInt(window.innerWidth);
@@ -81,31 +81,27 @@
         }
 
         if (key === 'q') {
-            topPos -= clientHeight / 2 + "px";
-            leftPos -= clientWidth / 2 + "px";
+            topPos -= step / 2;
+            leftPos -= step / 2;
         } else {
-            topPos += clientHeight / 2 + "px";
-            leftPos += clientWidth / 2 + "px";
+            topPos += step / 2;
+            leftPos += step / 2;
         }
 
-        topPos = (topPos < step / 2)
-            ? (step / 2)
-            : topPos;
-        leftPos = (leftPos < step / 2)
-            ? (step / 2)
-            : leftPos;
+        topPos = (topPos < 0) ? 0 : topPos;
+        leftPos = (leftPos < 0) ? 0 : leftPos;
 
-        topPos = (topPos > browserHeight - clientHeight / 2)
-            ? (browserHeight - clientHeight / 2)
+        topPos = (topPos > browserHeight - clientHeight)
+            ? (browserHeight - clientHeight)
             : topPos;
-        leftPos = (leftPos > browserWidth - clientWidth / 2)
-            ? (browserWidth - clientWidth / 2)
+        leftPos = (leftPos > browserWidth - clientWidth)
+            ? (browserWidth - clientWidth)
             : leftPos;
 
         element.style.width = clientWidth + 'px';
         element.style.height = clientHeight + 'px';
         element.style.left = leftPos + 'px';
-        element.style.top = leftPos + 'px';
+        element.style.top = topPos + 'px';
     }
 
     function resizeElements(key) {
