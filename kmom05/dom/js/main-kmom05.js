@@ -86,7 +86,7 @@
     function shiftColor() {
         let selected = document.querySelectorAll(".selected");
         selected.forEach((element) => {
-            let color = element.style["background-color"]; // TODO
+            let color = element.style["background-color"] || "green";
             let colorIx = colors.indexOf(color);
 
             if (colorIx == colors.length - 1) {
