@@ -1,6 +1,6 @@
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
 
-(function () {
+(function() {
     'use strict';
 
     let content = document.getElementById("content"),
@@ -13,7 +13,8 @@
     let left = parseInt(window.getComputedStyle(box1).left),
         top = parseInt(window.getComputedStyle(box1).top);
     let colors = ['green', 'yellow', 'red', 'blue'];
-    let step = 10;
+    let step = 10,
+        movingSteps = 20;
 
     function printInfo() {
         console.log('Kmom05 1.1');
@@ -30,6 +31,7 @@
 
     function toggleSelectedWithKeypress() {
         let selected = document.querySelectorAll(".selected");
+
         selected.forEach((element) => {
             element.classList.toggle("selected");
         });
@@ -37,6 +39,7 @@
 
     function toggleCircle() {
         let selected = document.querySelectorAll(".selected");
+
         selected.forEach((element) => {
             element.classList.toggle("circle");
         });
@@ -84,11 +87,19 @@
             leftPos += clientWidth / 2 + "px";
         }
 
-        topPos = (topPos < step / 2) ? (step / 2) : topPos;
-        leftPos = (leftPos < step / 2) ? (step / 2) : leftPos;
+        topPos = (topPos < step / 2)
+            ? (step / 2)
+            : topPos;
+        leftPos = (leftPos < step / 2)
+            ? (step / 2)
+            : leftPos;
 
-        topPos = (topPos > browserHeight - clientHeight / 2) ? (browserHeight - clientHeight / 2) : topPos;
-        leftPos = (leftPos > browserWidth - clientWidth / 2) ? (browserWidth - clientWidth / 2) : leftPos;
+        topPos = (topPos > browserHeight - clientHeight / 2)
+            ? (browserHeight - clientHeight / 2)
+            : topPos;
+        leftPos = (leftPos > browserWidth - clientWidth / 2)
+            ? (browserWidth - clientWidth / 2)
+            : leftPos;
 
         element.style.width = clientWidth + 'px';
         element.style.height = clientHeight + 'px';
@@ -98,6 +109,7 @@
 
     function resizeElements(key) {
         let selected = document.querySelectorAll(".selected");
+
         selected.forEach((element) => {
             resizeElement(element, key);
         });
@@ -128,6 +140,11 @@
         return randAttributes;
     }
 
+    function addElementEventListeners(element) {
+        element.addEventListener("click", toggleSelected);
+        element.addEventListener("dblclick", transitionRemove);
+    }
+
     function duplicateSelected() {
         let selected = document.querySelectorAll(".selected");
 
@@ -140,7 +157,7 @@
             clonedElement.style.left = randAttributes.leftPos;
             clonedElement.style.zIndex = element.zIndex + 1;
             content.appendChild(clonedElement);
-            clonedElement.addEventListener("click", toggleSelected);
+            addElementEventListeners(clonedElement);
         });
     }
 
@@ -160,6 +177,7 @@
 
     function shiftColor() {
         let selected = document.querySelectorAll(".selected");
+
         selected.forEach((element) => {
             let color = element.style["background-color"] || "green";
             let colorIx = colors.indexOf(color);
@@ -174,6 +192,7 @@
 
     function changeZindex(value) {
         let selected = document.querySelectorAll(".selected");
+
         selected.forEach((element) => {
             let currentZindex = parseInt(element.style.zIndex) || 1;
 
@@ -211,12 +230,46 @@
         randomDiv.style.top = topPosition + 'px';
         randomDiv.style.left = leftPosition + 'px';
         content.appendChild(randomDiv);
-        randomDiv.addEventListener("click", toggleSelected);
-        randomDiv.addEventListener("dblclick", transitionRemove);
+        addElementEventListeners(randomDiv);
+    }
+
+    function moveSelectedElements(key) {
+        let selected = document.querySelectorAll(".selected");
+
+        selected.forEach((element) => {
+            var boxTop = element.offsetTop,
+                boxLeft = element.offsetLeft,
+                boxWidth = element.clientWidth,
+                boxHight = element.clientHeight;
+
+            switch (key) {
+                case 'arrowup':
+                    if (boxTop >= movingSteps) {
+                        element.style.top = (boxTop - movingSteps) + 'px';
+                    }
+                    break;
+                case 'arrowdown':
+                    if (boxTop <= window.innerHeight - boxHight - movingSteps - 2) {
+                        element.style.top = (boxTop + movingSteps) + 'px';
+                    }
+                    break;
+                case 'arrowleft':
+                    if (boxLeft >= movingSteps) {
+                        element.style.left = (boxLeft - movingSteps) + 'px';
+                    }
+                    break;
+                case 'arrowright':
+                    if (boxLeft <= window.innerWidth - boxWidth - movingSteps) {
+                        element.style.left = (boxLeft + movingSteps) + 'px';
+                    }
+                    break;
+            }
+        });
     }
 
     function keyPressed() {
         let key = event.key.toLowerCase();
+
         switch (key) {
             case 'e':
                 toggleCircle();
@@ -240,6 +293,22 @@
             case 's':
                 changeZindex(-1);
                 break;
+            case 'arrowup':
+            case 'arrowdown':
+            case 'arrowleft':
+            case 'arrowright':
+                moveSelectedElements(key);
+                break;
+            case '9':
+                if (movingSteps < 30) {
+                    movingSteps += 5;
+                }
+                break;
+            case '0':
+                if (movingSteps > 5) {
+                    movingSteps -= 5;
+                }
+                break;
             case 'u':
                 toggleSelectedWithKeypress();
                 break;
@@ -254,7 +323,7 @@
 
     window.addEventListener("resize", centerElement.bind(null, box1), false);
     document.addEventListener("keydown", keyPressed);
-    box1.addEventListener("click", toggleSelected);
+    addElementEventListeners(box1);
     centerElement(box1);
     printInfo();
 
