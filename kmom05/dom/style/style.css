@@ -1,0 +1,18 @@
+@import "kmom05.css";
+
+html {
+    background-image: url("../img/pexels-szabó-viktor-3228418.jpg");
+    background-attachment: fixed;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+html,
+body {
+    position: relative;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}

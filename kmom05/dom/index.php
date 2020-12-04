@@ -1,8 +1,8 @@
 <?php
     include("incl/config.php");
-    $title = "Sandlådan | $shortName";
+    $title = "Sandlådan - kmom05 | $shortName";
     include("incl/header.php");
-    include("incl/navbar.php");
+    // include("incl/navbar.php");
 ?>
 <main>
     <article class="all-browsers">
@@ -16,7 +16,7 @@
         <section class="kmom">
             <h2>Kmom01</h2>
             <div id="content" class="content">
-                <div id="box1" class="box center green size200"></div>
+                <div id="box1" class="box center green size100"></div>
             </div>
         </section>
     </article>

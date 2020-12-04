@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
-@import("kmom05.css");
+@import "navbar.css";
+@import "kmom05.css";
 
 h1 {
     text-align: center;
@@ -25,7 +25,6 @@ html {
     background-repeat: no-repeat;
     background-size: cover;
     overflow-y: scroll;
-    font-family: 'Sanchez', serif;
 }
 
 a {
@@ -98,36 +97,6 @@ article > header {
     color: black;
     overflow: auto;
     clear: both;
-}
-
-
-.navbar {
-    margin-top: 5px;
-    padding: 0.5em;
-    border-radius: 10px;
-    border: 1px solid #999;
-}
-
-.navbar .selected {
-    background-color: rgba(255, 255, 255, 0.6);
-    opacity: 1;
-}
-
-.navbar a {
-    display: inline-block;
-    padding: 0.4em 0.8em;
-    text-align: center;
-    font-size: 16px;
-    border: 1px solid #999;
-    border-radius: 5px;
-    color: #000;
-    text-decoration: none;
-}
-
-.navbar a:hover {
-    text-decoration: underline;
-    background-color: rgba(255, 255, 255, 0.8);
-    opacity: 1;
 }
 
 .site-header {

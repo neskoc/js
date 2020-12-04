@@ -3,30 +3,35 @@
 (function () {
     'use strict';
 
-    /* Formatera datumet och tiden i formatet yyyy/mm/dd och hh:mm:ss.
-     Se till så att det läggs på en nolla vid entalen, till exempel 13:4:55 = 13:04:55
-     */
-    var myContent = document.getElementById('content');
+    let content = document.getElementById('content'),
+        browserSizeSpan = document.getElementById('browserSize'),
+        browserHeight = window.innerHeight,
+        browserWidth = window.innerWidth,
+        box1 = document.getElementById('box1'),
+        box1Size = {};
+    // window.getComputedStyle(box1).getPropertyValue("left");
+    let left = parseInt(window.getComputedStyle(box1).left),
+        top = parseInt(window.getComputedStyle(box1).top);
 
-    myContent.innerHTML = '<h3>Nenads sandlåda!</h3>';
+    function centerElement(element) {
+        let hight = parseInt(window.innerHeight),
+            width = parseInt(window.innerWidth),
+            horOffset = parseInt(element.offsetWidth),
+            vertOffset = parseInt(element.offsetHeight);
 
-    window.console.log('Sandlådans konsol!');
+        element.style.top = (hight - vertOffset) / 2 + 'px';
+        element.style.left = (width - horOffset) / 2 + 'px';
+    }
 
-    var today = new Date(Date.now());
+    function printInfo() {
+        console.log('Kmom05 1.1');
+        console.log(`Browser windows size: (${browserHeight}, ${browserHeight})`);
+        console.log(`box1 size: (${box1.offsetWidth},${box1.offsetHeight})`);
+        console.log(`box1 position: (${left},${top})`);
+    }
 
-    var yyyy = today.getFullYear().toString().padStart(4, '0');
-    var MM = today.getMonth().toString().padStart(2, '0');
-    var dd = today.getDay().toString().padStart(2, '0');
-    var hh = today.getHours().toString().padStart(2, '0');
-    var mm = today.getMinutes().toString().padStart(2, '0');
-    var ss = today.getSeconds().toString().padStart(2, '0');
-    var datumStr = yyyy + '/' + MM + '/' + dd + ' ' + hh + ':' + mm + ':' + ss;
-    var textnode = document.createTextNode('Formaterat datum: ' + datumStr);
+    window.addEventListener("resize", centerElement.bind(null, box1), false);
+    centerElement(box1);
+    printInfo();
 
-    myContent.appendChild(textnode);
-
-    window.console.log('1. Dagens datum: ' + today);
-    window.console.log('Dagens datum: ' + datumStr);
-
-    // window.console.log(newDate);
 })();
