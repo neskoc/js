@@ -4,7 +4,7 @@
     'use strict';
 
     let content = document.getElementById("content"),
-        browserSizeSpan = document.getElementById('browserSize'),
+        // browserSizeSpan = document.getElementById('browserSize'),
         browserHeight = window.innerHeight,
         browserWidth = window.innerWidth,
         box1 = document.getElementById('box1'),
@@ -14,8 +14,7 @@
         top = parseInt(window.getComputedStyle(box1).top);
     let colors = ['green', 'yellow', 'red', 'blue'];
     let step = 10,
-        movingSteps = 20,
-        timer;
+        movingSteps = 20;
 
     function printInfo() {
         console.log('Kmom05 1.1');
@@ -132,7 +131,7 @@
             'randomForm': randomForm,
             'topPos': topPos + 'px',
             'leftPos': leftPos + 'px'
-        }
+        };
 
         return randAttributes;
     }
@@ -160,12 +159,13 @@
 
     function removeElements() {
         let selected = document.querySelectorAll(".selected");
+
         selected.forEach((element) => {
             element.remove();
         });
     }
 
-    function removeElement (element) {
+    function removeElement(element) {
         element.remove();
     }
 
@@ -185,7 +185,6 @@
         } else {
             element.style.backgroundColor = colors[colorIx + 1];
         }
-
     }
 
     function shiftColorForSelected() {
@@ -207,6 +206,7 @@
 
     function animateSelected() {
         let selected = document.querySelectorAll(".selected");
+
         selected.forEach((element) => {
             window.setTimeout(changeElementAttributes.bind(null, element, false), 200);
             window.setTimeout(changeElementAttributes.bind(null, element, false), 400);
@@ -355,5 +355,4 @@
     addElementEventListeners(box1);
     centerElement(box1);
     printInfo();
-
 })();

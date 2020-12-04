@@ -120,6 +120,34 @@
                     TIL: Att lägga mer på att lära sig arbetsverktygen för det lönar sig i längden.
                 </p>
         </section>
+        <section class="kmom">
+                <h2>Kmom05</h2>
+                <p>
+                    Jag tycker att kmom05 hade rätt så bra balans mellan svårighetsgraden och omfattningen. Vi fick träna på i princip allt som togs upp i teoridelen och uppgifterna hade också lite tuggmotstånd.
+                    <br>
+                    Vad hade jag kämpat med mest? Det var nog att förstora och förminska olika objekt samtidigt att det inte skall börja sticka utanför den synliga ytan. Sedan fick jag köra debug en hel del för att avlusa olika problem oftast självförvållade genom att jag missat uppdatera rätta attribut samt att blandade ihop bredden och höjden/använde det få fel ställe.
+                    <br>
+                    När man kopierar och klistrar in för att spara tid händer det en hel del gånger att tiden blir längre för att man missar att ändra allt.
+                </p>
+                <p>
+                    Jag har gjort samtliga DOM-uppgifter men valt att inte köra flaggorna. Har lite kort om tid de närmaste dagarna och större delen har jag ändå gjort i kmom04.
+                    <br>
+                    Sedan kommer vi väl behöva göra om det som en del av projektet så jag får ta det då.
+                </p>
+                <p>
+                    Jag har också gjort animeringen (4.2) men jag gjorde det lätt för mig och spred ut 5 anrop av samma funkton via setTimeout med 200ms mellanrum.
+                </p>
+                <p>
+                    Som en egen händelse har jag lagt till möjligheten att öka och minska hastigheten (antal steg) vid förflyttningen av objekt. Detta regleras med knapparna "9" som ökar stegen och "0" som minskar stegen.
+                    <br>
+                    När objekten kommer till kanten kan man minska "hastigheten" för att komma närmare kanten och sedan öka stegen om man behöver förflytta sig över större avstånd.
+                </p>
+                <p>
+                    Allt i allo är jag rätt så nöjd med utfallet och även om det inte var så stora framsteg inom något område har jag börjat känna mig rätt så bekväm med "events".
+                    <br>
+                    Jag har fortfarande lite problem med att få grepp på vilka attribut som är med och utan kanter alltså jag kan slå upp det men jag måste göra det nästan varje gång.
+                </p>
+        </section>
     </article>
 </main>
 
