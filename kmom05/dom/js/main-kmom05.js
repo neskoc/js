@@ -14,7 +14,8 @@
         top = parseInt(window.getComputedStyle(box1).top);
     let colors = ['green', 'yellow', 'red', 'blue'];
     let step = 10,
-        movingSteps = 20;
+        movingSteps = 20,
+        timer;
 
     function printInfo() {
         console.log('Kmom05 1.1');
@@ -142,7 +143,7 @@
 
     function addElementEventListeners(element) {
         element.addEventListener("click", toggleSelected);
-        element.addEventListener("dblclick", transitionRemove);
+        element.addEventListener("dblclick", transitionRemove.bind(null, element, false));
     }
 
     function duplicateSelected() {
@@ -168,11 +169,15 @@
         });
     }
 
-    function transitionRemove() {
-        let selected = document.querySelectorAll(".selected");
-        selected.forEach((element) => {
-            element.remove();
-        });
+    function removeElement (element) {
+        element.remove();
+    }
+
+    function transitionRemove(element) {
+        window.setTimeout(removeElement.bind(null, element, false), 2000);
+        element.classList.add("animateSize");
+        element.style.width = '2px';
+        element.style.height = '2px';
     }
 
     function shiftColor() {
