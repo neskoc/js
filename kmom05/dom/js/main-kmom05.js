@@ -8,22 +8,12 @@
         browserHeight = window.innerHeight,
         browserWidth = window.innerWidth,
         box1 = document.getElementById('box1'),
-        box1Size = {};
+        elementSize = 200;
     // window.getComputedStyle(box1).getPropertyValue("left");
     let left = parseInt(window.getComputedStyle(box1).left),
         top = parseInt(window.getComputedStyle(box1).top);
     let colors = ['green', 'yellow', 'red', 'blue'];
     let step = 10;
-
-    function centerElement(element) {
-        let hight = parseInt(window.innerHeight),
-            width = parseInt(window.innerWidth),
-            horOffset = parseInt(element.offsetWidth),
-            vertOffset = parseInt(element.offsetHeight);
-
-        element.style.top = (hight - vertOffset) / 2 + 'px';
-        element.style.left = (width - horOffset) / 2 + 'px';
-    }
 
     function printInfo() {
         console.log('Kmom05 1.1');
@@ -38,6 +28,13 @@
         console.log(event);
     }
 
+    function toggleSelectedWithKeypress() {
+        let selected = document.querySelectorAll(".selected");
+        selected.forEach((element) => {
+            element.classList.toggle("selected");
+        });
+    }
+
     function toggleCircle() {
         let selected = document.querySelectorAll(".selected");
         selected.forEach((element) => {
@@ -45,12 +42,25 @@
         });
     }
 
-    function resizeElement(element, key) {
-        let clientWidth = element.clientWidth,
-            clientHeight = element.clientHeight;
+    function centerElement(element) {
+        let hight = parseInt(window.innerHeight),
+            width = parseInt(window.innerWidth),
+            horOffset = parseInt(element.offsetWidth),
+            vertOffset = parseInt(element.offsetHeight);
 
-        browserHeight = window.innerHeight;
-        browserWidth = window.innerWidth;
+        element.style.top = (hight - vertOffset) / 2 + 'px';
+        element.style.left = (width - horOffset) / 2 + 'px';
+    }
+
+    function resizeElement(element, key) {
+        let clientWidth = parseInt(element.clientWidth),
+            clientHeight = parseInt(element.clientHeight),
+            leftPos = parseInt(element.offsetLeft),
+            topPos = parseInt(element.offsetTop);
+
+        browserHeight = parseInt(window.innerHeight);
+        browserWidth = parseInt(window.innerWidth);
+
         if (key === 'q') {
             clientWidth += step;
             clientHeight += step;
@@ -66,20 +76,85 @@
             clientHeight = step;
         }
 
-        if (clientHeight > browserHeight) {
-            clientWidth = clientHeight = browserHeight - step;
-        } else if (clientWidth > browserWidth) {
-            clientHeight = clientWidth = browserWidth - step;
+        if (key === 'q') {
+            topPos -= clientHeight / 2 + "px";
+            leftPos -= clientWidth / 2 + "px";
+        } else {
+            topPos += clientHeight / 2 + "px";
+            leftPos += clientWidth / 2 + "px";
         }
+
+        topPos = (topPos < step / 2) ? (step / 2) : topPos;
+        leftPos = (leftPos < step / 2) ? (step / 2) : leftPos;
+
+        topPos = (topPos > browserHeight - clientHeight / 2) ? (browserHeight - clientHeight / 2) : topPos;
+        leftPos = (leftPos > browserWidth - clientWidth / 2) ? (browserWidth - clientWidth / 2) : leftPos;
+
         element.style.width = clientWidth + 'px';
         element.style.height = clientHeight + 'px';
-        centerElement(element);
+        element.style.left = leftPos + 'px';
+        element.style.top = leftPos + 'px';
     }
 
     function resizeElements(key) {
         let selected = document.querySelectorAll(".selected");
         selected.forEach((element) => {
             resizeElement(element, key);
+        });
+    }
+
+    /**
+     * Give a random number between min and max.
+     * @param  min
+     * @param  max
+     * @return integer
+     */
+    function random(min, max) {
+        return Math.floor((Math.random() * max) + min);
+    }
+
+    function getRandomAttributes(elementSize) {
+        let randomColor = colors[random(0, colors.length)],
+            randomForm = random(0, 2),
+            topPos = random(0, window.innerHeight - elementSize),
+            leftPos = random(0, window.innerWidth - elementSize);
+        let randAttributes = {
+            'randomColor': randomColor,
+            'randomForm': randomForm,
+            'topPos': topPos + 'px',
+            'leftPos': leftPos + 'px'
+        }
+
+        return randAttributes;
+    }
+
+    function duplicateSelected() {
+        let selected = document.querySelectorAll(".selected");
+
+        selected.forEach((element) => {
+            let clonedElement = element.cloneNode(true),
+                randAttributes = getRandomAttributes(element.clientWidth);
+
+            clonedElement.id = "";
+            clonedElement.style.top = randAttributes.topPos;
+            clonedElement.style.left = randAttributes.leftPos;
+            clonedElement.style.zIndex = element.zIndex + 1;
+            content.appendChild(clonedElement);
+            clonedElement.addEventListener("click", toggleSelected);
+        });
+    }
+
+    function removeElements() {
+        let selected = document.querySelectorAll(".selected");
+        selected.forEach((element) => {
+            element.remove();
+        });
+    }
+
+    function transitionRemove() {
+        let selected = document.querySelectorAll(".selected");
+        selected.forEach((element) => {
+            element.remove();
         });
     }
 
@@ -97,6 +172,49 @@
         });
     }
 
+    function changeZindex(value) {
+        let selected = document.querySelectorAll(".selected");
+        selected.forEach((element) => {
+            let currentZindex = parseInt(element.style.zIndex) || 1;
+
+            element.style.zIndex = currentZindex + value;
+            // console.log(element.attributes);
+        });
+    }
+
+    function selectAll() {
+        let selected = document.querySelectorAll(".box");
+        let counter = 0;
+
+        selected.forEach((element) => {
+            if (!element.classList.contains("selected")) {
+                element.classList.add("selected");
+                counter++;
+            }
+        });
+        console.log('3.6 selected: ' + counter);
+    }
+
+    function addRandomElement() {
+        let randomDiv = document.createElement("div");
+        let randomColor = colors[random(0, colors.length)],
+            randomForm = random(0, 2),
+            topPosition = random(0, window.innerHeight - elementSize),
+            leftPosition = random(0, window.innerWidth - elementSize);
+
+        console.log('form: ' + randomForm + ' color: ' + randomColor);
+        randomDiv.classList.add('box', 'center', 'green', 'size200');
+        if (randomForm == 0) {
+            randomDiv.classList.add('circle');
+        }
+        randomDiv.style.backgroundColor = randomColor;
+        randomDiv.style.top = topPosition + 'px';
+        randomDiv.style.left = leftPosition + 'px';
+        content.appendChild(randomDiv);
+        randomDiv.addEventListener("click", toggleSelected);
+        randomDiv.addEventListener("dblclick", transitionRemove);
+    }
+
     function keyPressed() {
         let key = event.key.toLowerCase();
         switch (key) {
@@ -109,6 +227,27 @@
                 break;
             case 'r':
                 shiftColor();
+                break;
+            case 't':
+                duplicateSelected();
+                break;
+            case 'y':
+                removeElements();
+                break;
+            case 'a':
+                changeZindex(1);
+                break;
+            case 's':
+                changeZindex(-1);
+                break;
+            case 'u':
+                toggleSelectedWithKeypress();
+                break;
+            case 'i':
+                selectAll();
+                break;
+            case 'p':
+                addRandomElement();
                 break;
         }
     }

@@ -1,5 +1,6 @@
 .box {
     position: absolute;
+    z-index: 1;
 }
 
 .center {
@@ -22,9 +23,13 @@
 }
 
 .selected {
-    border: 4px solid blue;
+    border: 4px solid black;
 }
 
 .circle {
     border-radius: 50%;
+}
+
+.animateSize {
+    transition: width 1s, height 1s;
 }
