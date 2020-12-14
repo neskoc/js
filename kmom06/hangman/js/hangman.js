@@ -1,8 +1,10 @@
-/**
- * Showing off how to display/hide parts of a SVG-image.
- */
+/* jshint esversion: 6 */
+
 window.Hangman = (function () {
     "use strict";
+
+    var secretWord = "",
+        partsCounter = 0;
 
     var hangman = {
 
@@ -32,6 +34,19 @@ window.Hangman = (function () {
             "head"
         ],
 
+        "secretWordList": [
+            "bord",
+            "fönster",
+            "hund",
+            "gräsmatta",
+            "högtalare",
+            "mikrofon",
+            "lastbil",
+            "avbitare",
+            "havet",
+            "gubben"
+        ],
+
 
         /**
          * Check if part a valid part, writes error message to console if the part is invalid.
@@ -45,7 +60,6 @@ window.Hangman = (function () {
                 window.console.log("The part is not valid: " + part);
                 return false;
             }
-            window.console.log("The part is valid: " + part);
             return true;
         },
 
@@ -59,7 +73,6 @@ window.Hangman = (function () {
          */
         "hide": function (part) {
             if (this.isValid(part)) {
-                window.console.log("Hiding part: " + part);
                 this.partAsElement[part].style.display = "none";
             }
         },
@@ -77,6 +90,58 @@ window.Hangman = (function () {
                 window.console.log("Showing part: " + part);
                 this.partAsElement[part].style.display = "inline";
             }
+        },
+
+
+        /**
+         * Show a next part.
+         * If last part return true otherwise false
+         *
+         * @param void.
+         *
+         * @returns boolean.
+         */
+        "showNextPart": function () {
+            this.show(this.validParts[partsCounter]);
+            partsCounter += 1;
+            if (partsCounter == this.validParts.length) {
+                return true;
+            }
+            return false;
+        },
+
+
+        /**
+         * Show a word list.
+         *
+         * @param void.
+         *
+         * @returns this.wordList.
+         */
+        "wordlist": function () {
+            this.secretWordList.forEach(function(item) {
+                console.log(item);
+            });
+        },
+
+        "setSecretWord": function () {
+            let len = this.secretWordList.length;
+
+            secretWord =
+                this.secretWordList[window.Tools.getInt(0, len)].toUpperCase();
+        },
+
+
+        /**
+         * Show the secret word.
+         *
+         * @param void.
+         *
+         * @returns secret_word.
+         */
+        "peek": function () {
+            console.log(secretWord);
+            return secretWord;
         }
     };
 

@@ -2,42 +2,31 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Kmom06: Hangman</title>
+    <title>Javascript 1 - Kmom 06: Hangman</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="img/icon.js.png"/>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=2.0;">
+    <link rel="stylesheet" type="text/css" href="style/main-style.css">
 </head>
 <body>
+<aside>
+    <div id="alphabet">
+    </div>
+</aside>
 
-
-<svg
-   xmlns="http://www.w3.org/2000/svg"
-   width="400"
-   height="500"
-   id="hangman_svg">
-  <defs
-     id="defs4">
-    <filter
-       id="filter12239">
-      <fegaussianblur
-         id="feGaussianBlur12241"
-         stddeviation="0.84166667" />
-    </filter>
-    <filter
-       height="1.2177229"
-       y="-0.10886145"
-       width="1.3752246"
-       x="-0.1876123"
-       id="filter12703">
-      <fegaussianblur
-         id="feGaussianBlur12705"
-         stddeviation="0.91851852" />
-    </filter>
-    <filter
-       id="filter13311">
-      <fegaussianblur
-         id="feGaussianBlur13313"
-         stddeviation="0.018073074" />
-    </filter>
-  </defs>
+<div id="container" class="container">
+    <svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" id="hangman_svg">
+        <defs id="defs4">
+            <filter id="filter12239">
+                <fegaussianblur id="feGaussianBlur12241" stddeviation="0.84166667" />
+            </filter>
+            <filter height="1.2177229" y="-0.10886145" width="1.3752246" x="-0.1876123" id="filter12703">
+                <fegaussianblur id="feGaussianBlur12705" stddeviation="0.91851852" />
+            </filter>
+            <filter id="filter13311">
+                <fegaussianblur id="feGaussianBlur13313" stddeviation="0.018073074" />
+            </filter>
+        </defs>
   <g
      id="hang_hill" >
     <path
@@ -467,13 +456,8 @@
        style="fill:none;stroke:#ac2900;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="path11781"
        d="m 345.16259,76.30681 c 1.36184,-0.588885 -0.78164,-2.879007 -0.90965,-4.357182 -0.17575,-2.029452 0.2585,-6.726233 0.0944,-7.105708" />
-    <path
-       style="fill:none;stroke:#ac2900;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="path11783"
-       d="m 347.7724,79.807005 c -0.26674,-3.080211 5.44743,-12.799325 4.83721,-15.856036" />
-    <path
-       style="fill:none;stroke:#ac2900;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="path11785"
+    <path style="fill:none;stroke:#ac2900;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" id="path11783" d="m 347.7724,79.807005 c -0.26674,-3.080211 5.44743,-12.799325 4.83721,-15.856036" />
+    <path style="fill:none;stroke:#ac2900;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" id="path11785"
        d="m 353.42197,83.576271 c -0.18861,-2.177967 13.3612,-1.661225 15.65921,-1.533526 0.85661,0.0476 2.35512,-0.381392 3.33098,-0.465902" />
     <path
        style="fill:none;stroke:#ac2900;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -488,8 +472,13 @@
        height="20.25"
        width="11.75" />
   </g>
-</svg>
+    </svg>
+</div>
+<div id="secret-word"></div>
+<div id="message"></div>
 
-<script src="hangman.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/hangman.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
