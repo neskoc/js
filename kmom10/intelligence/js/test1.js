@@ -4,7 +4,6 @@ window.Test1 = (function () {
     "use strict";
 
     let tools = window.Tools,
-        score = 0,
         currentQuestion = 0,
         content = document.getElementById("content"),
 
@@ -50,32 +49,34 @@ window.Test1 = (function () {
         askQuestion(currentQuestion);
     }
 
-    function showResult(correctAnswer) {
-        let pContent = "Det rätta svaret är: " + test1Alternativs[currentQuestion][test1Answers[currentQuestion]],
-            h1 = "";
+    function showResult(isCorrect) {
+        let pContent = test1Alternativs[currentQuestion][test1Answers[currentQuestion]],
+            h1 = " ";
 
-        console.log("CorrectAnswer:" + correctAnswer);
+        console.log("CorrectAnswer:" + isCorrect);
         tools.cleanContent();
-        if (correctAnswer) {
+        if (isCorrect) {
             h1 = "Rätt svar!";
-            pContent = "";
-            score += 3;
+            window.Test.partialScore += 3;
         } else {
             h1 = "Fel svar!";
+            pContent = "Det rätta svaret är: " + pContent;
         }
         tools.createHeader(h1, pContent);
         if (currentQuestion < test1Answers.length - 1) {
             currentQuestion += 1;
             tools.addButton(askNextQuestion, "Nästa fråga >>");
         } else {
-            window.Test.totalScore += score;
             tools.addButton(window.Test2.startTest, "Nästa test >>");
         }
     }
 
     function createQuestion(questionNr) {
         let questionDiv = document.createElement("div"),
-            altDivContainer = document.createElement("div");
+            altDivContainer = document.createElement("div"),
+            title = "Fråga " + (questionNr + 1);
+
+        tools.createHeader(title, " ");
 
         questionDiv.textContent = test1Questions[questionNr];
         content.appendChild(questionDiv);
@@ -96,7 +97,6 @@ window.Test1 = (function () {
             altDivContainer.appendChild(altDiv);
         });
         content.appendChild(altDivContainer);
-
     }
 
     function askQuestion(questionNr) {
@@ -112,10 +112,8 @@ window.Test1 = (function () {
         let h1 = "Tipspromenad",
             pContent = `Du kommer få 5 frågor med 3 svarsalternativ var. Varje rätt svar ger 3 poäng. Varje fel svar ger inga poäng.
             Du svarar genom att klicka på något av de angivna alternativen.
-            När du är beredd klickar du på start-knappen.`,
-            button = document.createElement("button");
-        
-        score = 0;
+            När du är beredd klickar du på start-knappen.`;
+
         currentQuestion = 0;
         tools.createHeader(h1, pContent);
 
@@ -123,7 +121,6 @@ window.Test1 = (function () {
     }
 
     return {
-        score: score,
         startTest: startTest
     };
 })();

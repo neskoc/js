@@ -4,15 +4,15 @@ window.Tools = (function () {
     "use strict";
 
     let header = document.getElementById("header"),
-        content = document.getElementById("content");
+        content = document.getElementById("content"),
+        fizzBuzzAnswers = ["fizz", "buzz", "fizz buzz"];
 
-    function getInt(min, max) {
-        return Math.floor(Math.random() * (max - min) - min);
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
     }
 
     function createHeader(h1, content) {
-        let headerDiv = document.createElement("div"),
-            headerH1 = document.createElement("h1"),
+        let headerH1 = document.createElement("h1"),
             headerP = document.createElement("p");
 
         headerH1.textContent = h1;
@@ -33,9 +33,6 @@ window.Tools = (function () {
         cleanContent();
     }
 
-    function testAnswer(correctAnswer) {
-    }
-
     function addButton(eventListnerFunction, buttonText) {
         let button = document.createElement("button"),
             header = document.getElementById("header");
@@ -45,12 +42,34 @@ window.Tools = (function () {
         header.appendChild(button);
     }
 
+    function getFizzBuzz(number) {
+        let fizzBuzz = false,
+            answer = "";
+
+        if (number % 3 === 0) {
+            answer = "fizz";
+            fizzBuzz = true;
+        }
+        if (number % 5 === 0) {
+            if (fizzBuzz) {
+                answer += " ";
+            }
+            answer += "buzz";
+            fizzBuzz = true;
+        }
+        if (!fizzBuzz) {
+            answer = number.toString();
+        }
+        return answer;
+    }
+
     return {
-        getInt: getInt,
+        getRandomInt: getRandomInt,
         createHeader: createHeader,
         cleanContent: cleanContent,
-        testAnswer: testAnswer,
         addButton: addButton,
+        fizzBuzzAnswers: fizzBuzzAnswers,
+        getFizzBuzz: getFizzBuzz,
         reset: reset
     };
 })();

@@ -1,2 +1,86 @@
 @import "flags.css";
 
+html {
+    background-image: url("../img/pexels-szabb.jpg");
+    background-attachment: fixed;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-y: scroll;
+    font-family: 'Sanchez', serif;
+}
+
+main {
+    min-height: 20em;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    border-radius: 10px;
+}
+
+.container,
+.header,
+.content {
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 950px;
+    min-height: 800px;
+    border: 1px solid black;
+    background-color: #eeea;
+}
+
+.header {
+    position: relative;
+}
+
+.content {
+    position: relative;
+}
+
+.alternative-answer:hover {
+    cursor: pointer;
+    background-color: antiquewhite;
+}
+
+aside {
+    float: left;
+    width: 20%;
+}
+
+.letter.disabled:hover {
+    cursor: default;
+}
+
+#message {
+    display: flex;
+    max-width: 80%;
+    justify-content: center;
+    font-size: 5em;
+    color: red;
+    background-color: #2bba;
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    color: black;
+}
+
+a {
+    color: papayawhip;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:visited {
+    color: antiquewhite;
+}
