@@ -1,4 +1,4 @@
-<?php
+Generellt<?php
     include("incl/config.php");
     $title = "Redovisningssida | $shortName";
     include("incl/header.php");
@@ -146,6 +146,45 @@
                     Allt i allo är jag rätt så nöjd med utfallet och även om det inte var så stora framsteg inom något område har jag börjat känna mig rätt så bekväm med "events".
                     <br>
                     Jag har fortfarande lite problem med att få grepp på vilka attribut som är med och utan kanter alltså jag kan slå upp det men jag måste göra det nästan varje gång.
+                </p>
+        </section>
+        <section class="kmom">
+                <h2>Kmom06</h2>
+                <p>
+                    I och med att jag stött på samma begrepp/liknande funktionalitet i andra programmeringsspråk var det relativt enkelt att förstå hur "closer" fungerar i javascript.
+                </p>
+                <p>
+                    För ett ca. 15 år sedan var jag inskriven på en distanskurs i design mönster  c++, jag köpte även
+                    kursboken men orkade aldrig (full)följa den. I samband med det läste jag lite några kapitel översiktligt så jag har lite koll på det.
+                    <br>
+                    Trots det dåliga samvetet under efterföljande år blev det aldrig någon fortsättning. Det var ett sidospår mot mitt yrkesspår och jag saknade tyvärr motivationen att lägga tid på att ta upp tråden igen.
+                </p>
+                <p>
+                    "Module pattern” är väl mest likt klasserna i objektorienterade språk fast module pattern känns mest
+                    som "fattigmansklass". Som en struktur är det bättre än ingenting men inte helt optimalt tycker jag.
+                    <br>
+                    Generellt har jag kännsla av att modularisering inte är JavaScripts starkaste sida och en naturlig del av språket utan det käns som att det har lagts på i efterhand.
+                    <br>
+                    Design mönster räknas inte riktigt som nybörjarmaterial och kräver en hel del abstrakt tänkande.
+                    Därför känns nog ingen bok som tar sig an att förklara det som väldigt lättläst.
+                    <br>
+                    Min bedömning är att en sådan kurs brukar komma som en minst tredje om inte fjärde kurs inom ett
+                    programmeringsspråk. Det är ingen slump att den kommer så sent.
+                    Själva boken “Learning JavaScript Design Patterns” är ganska lättläst men det går igenom ett komplext området och frågan är hur mycket fastnar efteråt.
+                </p>
+                <p>
+                    __TIL__: Trots att JavaScript av många betraktas som ett inte riktigt programmeringsspråk har jag
+                    insett att det finns mycket mer under ytan. Sedan början av kursen väntade jag på att se hur modulariseringen brukar fungera i JS och nu har vi äntligen skrapat lite på ytan.
+                    Jag hade önskat att det hade introducerats tidigare under kursen men bättre sent än aldrig.
+                    <br>
+                    Förhoppningsvis kommer jag öva mer på det under arbetet med projektet.
+                </p>
+                <p>
+                    Kom på att jag missat att kort beskriva hur jag löst uppgiften.
+                    Jag har valt att dela upp koden i tre modulen: main, hangman och tools.
+                    Både i hangman och tools finns några extrafunktioner som går att anropa från konsolen.
+                    Medan hela hangman objektet är publikt dvs. samtliga medlemsfunktioner och medlemsvariabler är publika, i tools har jag exponerat de funktioner jag behövt anropa (5 av 9) medan resten är privata.
+                    Dessutom är samtliga medlemsvariabler privata.
                 </p>
         </section>
     </article>
