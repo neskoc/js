@@ -5,6 +5,11 @@
     margin: 5px;
 }
 
+.flag-75x50:hover {
+    cursor: pointer;
+    outline: 2px solid black;
+}
+
 .hidden-flag {
     height: 100%;
     width: 100%;

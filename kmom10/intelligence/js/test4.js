@@ -8,6 +8,8 @@ window.Test4 = (function () {
         firstRun = true,
         content = document.getElementById("content"),
         shapeCounter = 0,
+        shapeObjects,
+        timerId,
 
         shapesInEngl = [
             'yellow rectangle',
@@ -48,7 +50,6 @@ window.Test4 = (function () {
             'röd triangel'
         ];
 
-
     let shapeObj = {
         shapeColor: NaN,
         shapeColorInEn: NaN,
@@ -78,21 +79,32 @@ window.Test4 = (function () {
         },
 
         shapeEventListener: function () {
-            let shapeHandle = document.getElementById("shape-" + this.id);
+            let shapeHandle = document.getElementById("shape-" + this.id),
+                shapeColor = this.shapeColor;
 
-            shapeHandle.addEventListener("click", checkOrder);
+            shapeHandle.addEventListener("click", function() {
+                console.log(shapeColor + " : " + guessOrder[shapeCounter])
+                if (shapeColor === guessOrder[shapeCounter]) {
+                    window.Test.partialScore += 1;
+                }
+                shapeCounter += 1;
+                if (shapeCounter === guessOrder.length) {
+                    clearTimeout(timerId);
+                    showResult(true);
+                }
+            });
         }
     };
 
-    let shapeObjects = [];
-
-    for (let ix = 0; ix < shapes.length; ix += 1) {
-        shapeObjects[ix] = Object.create(shapeObj);
-        shapeObjects[ix].init(
-            shapes[ix],
-            shapesInEngl[ix],
-            ix
-        );
+    function defineAllObjects() {
+        for (let ix = 0; ix < shapes.length; ix += 1) {
+            shapeObjects[ix] = Object.create(shapeObj);
+            shapeObjects[ix].init(
+                shapes[ix],
+                shapesInEngl[ix],
+                ix
+            );
+        }
     }
 
     function showResult() {
@@ -103,19 +115,6 @@ window.Test4 = (function () {
         pContent = "Antal poäng: " + window.Test.partialScore;
         tools.createHeader(h1, pContent);
         tools.addButton(window.Test5.startTest, "Nästa test >>");
-    }
-
-    function checkOrder() {
-        let shapeColor = event.shapeColor;
-
-        if (shapeColor === guessOrder[shapeCounter]) {
-            window.Test.partialScore += 1;
-        }
-        console.log(shapeCounter);
-        shapeCounter += 1;
-        if (shapeCounter === guessOrder.length) {
-            showResult(true);
-        }
     }
 
     function showGuessOrder() {
@@ -146,7 +145,7 @@ window.Test4 = (function () {
         tools.createHeader("Gissa formernas ordning", " ");
         drawAllShapes();
         showGuessOrder();
-        setTimeout(showResult, 1500000);
+        timerId = setTimeout(showResult, 15000);
     }
 
     function startTest() {
@@ -154,11 +153,15 @@ window.Test4 = (function () {
             pContent = `Detta testet kombinerar läsförståelse med visuell förmåga.
             Testet innebär att du skall gissa rätt ordning på 10 unika objekt. Objekt kan vara en
              kvadrat, en cirkel, en triangel eller en rektangel. Objektet har en färg. Du kommer få
-              en numrerad lista med 10 alternativ som säger i vilken ordning som de olika objekten skall klickas på.
+              en numrerad lista med 10 alternativ som säger i vilken ordning som de olika objekten
+               skall klickas på.
             När du är beredd klickar du på start-knappen.`;
 
         tools.cleanContent();
         shapeCounter = 0;
+        shapeObjects = [];
+        clearTimeout(timerId);
+        defineAllObjects();
 
         if (firstRun) {
             window.Test.totalScore += window.Test.partialScore;
