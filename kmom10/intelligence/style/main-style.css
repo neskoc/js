@@ -1,4 +1,5 @@
 @import "flags.css";
+@import "shapes.css";
 
 html {
     background-image: url("../img/pexels-szabb.jpg");
@@ -43,6 +44,11 @@ main {
 }
 
 .flags-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.shapes-container {
     display: flex;
     flex-direction: row;
 }

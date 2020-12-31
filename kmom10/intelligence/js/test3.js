@@ -1,4 +1,5 @@
 /* jshint esversion: 6 */
+/*tslint:disabled*/
 
 window.Test3 = (function () {
     "use strict";
@@ -19,13 +20,13 @@ window.Test3 = (function () {
             'Sweden'
         ],
 
-       uniqueCountryNames = [
+        uniqueCountryNames = [
             'Sweden',
             'Laos',
             'Bhutan',
             'Serbia'
         ],
-    
+
         nineFlagNames = [
             'Serbia',
             'Sweden',
@@ -37,7 +38,7 @@ window.Test3 = (function () {
             'Laos',
             'Serbia'
         ],
-    
+
         flagDivs = [
             '<div class="swe-horizontal" ></div><div class="swe-vertical"></div>',
             '<div class="laos-stripe" ></div><div class="laos-circle"></div>',
@@ -113,7 +114,7 @@ window.Test3 = (function () {
             uniqueCountryNames[flagIx],
             flagDivs[flagIx],
             ix
-            );
+        );
     }
 
     function showResult(isLast) {
@@ -171,7 +172,7 @@ window.Test3 = (function () {
                 ol.appendChild(li);
             });
             content.appendChild(ol);
-        }, 6000);
+        }, 5000);
     }
 
     function memoryTest() {
@@ -185,8 +186,10 @@ window.Test3 = (function () {
     function startTest() {
         let h1 = "Minne",
             pContent = `Detta är ett litet minnes-test som kollar hur bra bildminne man har.
-            Testet börjar med att 9 flaggor visas under 5 sekunder. Därefter döljs de och en numrerad lista men namnen på de nio flaggorna visas upp i stället. 
-            Du skall nu klicka på rätt ruta där motsvarande flagga ligger, i rätt ordning. Varje rätt svar ger 1 poäng. Varje fel svar ger inga poäng.
+            Testet börjar med att 9 flaggor visas under 5 sekunder. Därefter döljs de och en
+             numrerad lista men namnen på de nio flaggorna visas upp i stället. 
+            Du skall nu klicka på rätt ruta där motsvarande flagga ligger, i rätt ordning. Varje
+             rätt svar ger 1 poäng. Varje fel svar ger inga poäng.
             När du är beredd klickar du på start-knappen.`;
 
         tools.cleanContent();
@@ -194,6 +197,7 @@ window.Test3 = (function () {
 
         if (firstRun) {
             window.Test.totalScore += window.Test.partialScore;
+            window.Test.currentTest = 3;
             firstRun = false;
         } else {
             flagObjects.forEach(flag => {

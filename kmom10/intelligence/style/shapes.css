@@ -1,0 +1,81 @@
+.box {
+    position: relative;
+    margin: 5px;
+    z-index: 1;
+}
+
+.box:hover {
+    cursor: pointer;
+}
+
+.size75,
+.square,
+.circle,
+.rectangle {
+    height: 75px;
+    width: 75px;
+}
+
+.center {
+    top: 50%;
+    left: 50%;
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.red {
+    background-color: red;
+}
+
+.grey {
+    background-color: grey;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.green-triangle {
+    border-bottom: 75px solid green;
+}
+
+.blue-triangle {
+    border-bottom: 75px solid blue;
+}
+
+.red-triangle {
+    border-bottom: 75px solid red;
+}
+
+.grey-triangle {
+    border-bottom: 75px solid grey;
+}
+
+.yellow-triangle {
+    border-bottom: 75px solid yellow;
+}
+
+.selected {
+    border: 4px solid black;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 75px solid transparent;
+}
+
+.rectangle {
+    width: 75px;
+    height: 75px;
+}
+
+.circle {
+    border-radius: 50%;
+}

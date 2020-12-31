@@ -16,7 +16,7 @@ window.Test = (function () {
 
     function startCurrentTest() {
         // let test = "Test" + currentTest.toString();
-        let test = "Test3";
+        let test = "Test5";
 
         window[test].startTest();
     }

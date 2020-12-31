@@ -14,7 +14,7 @@ window.Test1 = (function () {
             "Vad är rosfeber?",
             "Vilket vitamin finns det mycket av i nypon?"
         ],
-        
+
         test1Alternativs = [
             [
                 "England",
@@ -42,7 +42,7 @@ window.Test1 = (function () {
                 "C-vitamin"
             ]
         ],
-        
+
         test1Answers = [0, 0, 0, 1, 2];
 
     function askNextQuestion() {
@@ -108,9 +108,10 @@ window.Test1 = (function () {
         askQuestion(0);
     }
 
-    function startTest () {
+    function startTest() {
         let h1 = "Tipspromenad",
-            pContent = `Du kommer få 5 frågor med 3 svarsalternativ var. Varje rätt svar ger 3 poäng. Varje fel svar ger inga poäng.
+            pContent = `Du kommer få 5 frågor med 3 svarsalternativ var. Varje rätt svar ger 3
+             poäng. Varje fel svar ger inga poäng.
             Du svarar genom att klicka på något av de angivna alternativen.
             När du är beredd klickar du på start-knappen.`;
 

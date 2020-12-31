@@ -65,16 +65,18 @@ window.Test2 = (function () {
         content.appendChild(altDivContainer);
     }
 
-    function startTest () {
+    function startTest() {
         let h1 = "Fizz Buzz",
             pContent = `Du kommer få en sekvens från spelet Fizz Buzz med flera svarsalternativ. 
-            Du svarar genom att klicka på något av de angivna alternativen.Varje rätt svar ger 3 poäng. Varje fel svar ger inga poäng.
+            Du svarar genom att klicka på något av de angivna alternativen.Varje rätt svar ger 3
+             poäng. Varje fel svar ger inga poäng.
             När du är beredd klickar du på start-knappen.`;
 
         tools.cleanContent();
 
         if (firstRun) {
             window.Test.totalScore += window.Test.partialScore;
+            window.Test.currentTest = 2;
             firstRun = false;
         }
         console.log("score: " + window.Test.totalScore);
