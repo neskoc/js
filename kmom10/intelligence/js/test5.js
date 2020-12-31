@@ -108,7 +108,7 @@ window.Test5 = (function () {
         let ol = document.createElement("ol");
 
         ol.innerText = "Villkor:";
-        requirements.forEach(function (element, ix) {
+        requirements.forEach(function (element) {
             let li = document.createElement("li");
 
             li.innerText = element;
@@ -145,7 +145,9 @@ window.Test5 = (function () {
 
     function startTest() {
         let h1 = "Uppfattningsförmåga",
-            pContent = `I det här testet visas ett objekt under 1 sekund. Du skall välja att klicka på objektet eller ej. När objektet försvinner så är det en paus på en sekund, sedan visas nästa objekt. Allt som allt visas tio objekt.
+            pContent = `I det här testet visas ett objekt under 1 sekund. Du skall välja att 
+            klicka på objektet eller ej. När objektet försvinner så är det en paus på en sekund,
+             sedan visas nästa objekt. Allt som allt visas tio objekt.
             När du är beredd klickar du på start-knappen.`;
 
         tools.cleanContent();

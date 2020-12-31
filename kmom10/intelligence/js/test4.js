@@ -83,7 +83,7 @@ window.Test4 = (function () {
                 shapeColor = this.shapeColor;
 
             shapeHandle.addEventListener("click", function() {
-                console.log(shapeColor + " : " + guessOrder[shapeCounter])
+                console.log(shapeColor + " : " + guessOrder[shapeCounter]);
                 if (shapeColor === guessOrder[shapeCounter]) {
                     window.Test.partialScore += 1;
                 }
