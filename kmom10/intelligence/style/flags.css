@@ -1,27 +1,15 @@
-.flag-300x200 {
+.flag-75x50 {
     position: relative;
-    width: 300px;
-    height: 200px;
+    width: 75px;
+    height: 50px;
     margin: 5px;
 }
 
-.flag-400x250 {
-    position: relative;
-    width: 400px;
-    height: 250px;
-    margin: 5px;
-}
-
-/* Backside */
-.backside {
-    position: absolute;
-    top: 60px;
-    left: 110px;
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
-    background-color: red;
-    z-index: 2;
+.hidden-flag {
+    height: 100%;
+    width: 100%;
+    background-color: #004b87;
+    z-index: 1000;
 }
 
 /* Sweden */
@@ -58,20 +46,20 @@
 
 .laos-stripe {
     position: absolute;
-    top: 50px;
+    top: 25%;
     left: 0;
-    height: 100px;
-    width: 300px;
+    height: 50%;
+    width: 100%;
     background-color: #002868;
     z-index: 1;
 }
 
 .laos-circle {
     position: absolute;
-    top: 60px;
-    left: 110px;
-    height: 80px;
-    width: 80px;
+    top: 30%;
+    left: 36.67%;
+    height: 40%;
+    width: 26.67%;
     border-radius: 50%;
     background-color: #fff;
     z-index: 2;
@@ -84,8 +72,8 @@
 }
 
 .bhutan-bottom-triangle {
-    width: 300px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
     clip-path: polygon(100% 0, 100% 100%, 0 100%);
     background-color: #ff4e12;
     z-index: 1;

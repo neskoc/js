@@ -6,7 +6,8 @@ window.Test2 = (function () {
     let tools = window.Tools,
         startNumber = 0,
         correctAnswer = "",
-        sequence = 10;
+        sequence = 10,
+        firstRun = true,
         content = document.getElementById("content");
 
     function showResult(isCorrect) {
@@ -72,11 +73,13 @@ window.Test2 = (function () {
 
         tools.cleanContent();
 
-        window.Test.totalScore += window.Test.partialScore;
+        if (firstRun) {
+            window.Test.totalScore += window.Test.partialScore;
+            firstRun = false;
+        }
         console.log("score: " + window.Test.totalScore);
         window.Test.partialScore = 0;
         startNumber = tools.getRandomInt(20, 100);
-        console.log("Fizz-buzz start nr: " + startNumber)
         tools.createHeader(h1, pContent);
 
         tools.addButton(generateFizzBuzz, "Starta Fizz Buzz!");

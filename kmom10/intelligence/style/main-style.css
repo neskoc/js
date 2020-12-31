@@ -42,6 +42,11 @@ main {
     position: relative;
 }
 
+.flags-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .alternative-answer:hover {
     cursor: pointer;
     background-color: antiquewhite;
