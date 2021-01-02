@@ -189,7 +189,7 @@ Generellt<?php
         </section>
         <section class="kmom">
             <h2>Kmom10</h2>
-            <h3>Allmänt</h3>
+            <h3>Generellt för hela projektet</h3>
             <p>
                 Redan från början har jag bestämt mig för att göra samtliga uppgifter.
                 Dessutom har jag valt att dela koden på följande sätt:
@@ -260,6 +260,7 @@ Generellt<?php
                 I deltest 3 - 5 upptäckte jag i efterhand problem med events efter reset så jag kämpade en del med att få till det. För detta deltest blev det en <strong>resetFlag</strong> funktion för varje flaggobjekt och att loopa igenom vektorn och anropa reset för varje objekt i början efter varje reset.
             </p>
             <p>
+                Ganska set i processen upptäckte jag ytterligare problem efter en väldigt tidig reset som visade sig ha samma ursprung som problem tidigare upptäckta i deltest 4 med setTimeout. Det löstes på liknande sätt som där med att samla alla id-nummer för händelsernas flaggor och köra <strong>resetFlag</strong> på varje.
             </p>
             <h3>Deltest 4: Visuell förmåga och läsförståelse</h3>
             <p>
@@ -288,6 +289,31 @@ Generellt<?php
                 <strong>showResutl</strong> schemalades att köras efter 20 sekunder.
             </p>
             <p>
+                Även här upptäckte jag under redovisningsskrivandet att man kunde fuska genom att snabbklicka på objektet och få fler än en poäng per klick. Så jag introducerade en flagga <strong>isClicked</strong> som då förbjöd fler än en poäng per objekt.
+            </p>
+            <h3>Allmänt</h3>
+            <p>
+                Jag har redan skrivit en del som hade kunnat ha lagts under allmänt så denna del kommer vara relativt kort.
+            </p>
+            <p>
+                Generellt hade jag önskat att specifikationen för projektet var lite mer precis så att det inte lämnar för mycket utrymme åt tolkningen. Man får genomföra en stor del av projektet under helgerna då man inte kan få sanbbåterkoppling vilket skapar en del frustration för att man kanske gör fel och blir tvungen att gå tillbaka och göra om saker och ting.<br>
+                Trots att jag kände mig ganska trygg med mitt sätt att tolka specifikationen har jag ändå haft en liten oro kvar att jag inte fick tolka det på det sättet.
+            </p>
+            <p>
+                Uppgifterna var annars lagom lätta/svåra och i nivån med vår genomsnittliga kunskapsnivå tycker jag. När jag väl kom igån gick spenderade jag sammanlagt kanske 35-40 timmar på att fixa kodningen (inklusive felsökning och rättelserna av fel jag upptäckt i efterhand).
+            </p>
+            <p>
+                Det mest krångliga var att (först upptäcka problem med och) fixa problem med <strong>setTimeout</strong>. Det är något som borde ha varnats för och tagits upp på förläsningarna. Alltså inte bara för att det svårt (det är egenligen inte) utan att man lätt missar att en sådan problematik över huvudtaget finns.<br>
+                Nu när jag tänker efter tycker jag att tidsstyrda händelser borde ha tagit mer tid under föreläsningen och gjorts en jämförelse med addEventListner med likheter och skilnader.
+            </p>
+            <p>
+                Kursmaterialet var faktist bra i synnerhet de inspelade (jag var aldrig med live) föreläsningar. Det som togs upp på föreläsningarna var både intressant/lärorikt och förklarat på ett roligt sätt.
+            </p>
+            <p>
+               I början trodde jag att kursen kommer vara för lätt men det tog farten och vi gick igenom en hel del. Tänker jag tillbaka har jag (ändligen efter så många år) fått en bra grund i javascript och mycket, mycket större förståelse av hur det hänger ihop än tidigare trots att jag första gången låtsatsprogrammerat redan i början på 2000 om jag nu minns rätt.
+            </p>
+            <p>
+                En mer formell kursbedömning kommer jag lämna in i samband med kursutvärderingen.
             </p>
         </section>
     </article>
