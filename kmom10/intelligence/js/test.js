@@ -14,9 +14,13 @@ window.Test = (function () {
         startCurrentTest();
     }
 
+    /**
+      *  Den här funktionen används för det mesta av reset för att kunna starta om deltest
+      *
+     * */
     function startCurrentTest() {
-        let test = "Test" + currentTest.toString();
-        // let test = "Test5";
+        // let test = "Test" + window.Test.currentTest.toString();
+        let test = "Test5";
 
         window[test].startTest();
     }
@@ -24,6 +28,7 @@ window.Test = (function () {
     return {
         partialScore: partialScore,
         totalScore: totalScore,
+        currentTest: currentTest,
         reset: reset,
         startNextTest: startCurrentTest
     };

@@ -57,6 +57,14 @@ window.Test4 = (function () {
         shapeHtml: NaN,
         shapeDivHandle: NaN,
 
+        /**
+        * init
+        *
+        * @param {string} shapeColor - innehåller klassvärden för färg och form
+        *       Dessa skall matcha shapes.css värdena.
+        * @param {int} id - id används för id attribut för div.
+        *
+        */
         init: function (shapeColor, shapeColorInEn, id) {
             this.shapeColor = shapeColor;
             this.id = id;
@@ -64,6 +72,15 @@ window.Test4 = (function () {
             this.shapeHtml = this.shapeColorToElement(shapeColorInEn);
         },
 
+        /**
+         * shapeColorToElement
+         *
+         * @param {string} shapeColor - innehåller klassvärden för färg och form
+         *      Tanken är att dessa skall användas för kontroll av om det är rätt objekt
+         *      enligt villkoren
+         * Utifrån klassvärdena skapas div-element som skall rita objekt av rätt form och färg
+         * Till samtliga div lägger även box och size75 klass attribut
+         */
         shapeColorToElement: function (shapeColor) {
             let div = document.createElement('div'),
                 classes = `box size75 ${shapeColor}`;

@@ -8,6 +8,7 @@ window.Test3 = (function () {
         content = document.getElementById("content"),
         flagCounter = 0,
         firstRun = true,
+        timeouts = [],
         guessOrder = [
             'Laos',
             'Bhutan',
@@ -91,9 +92,10 @@ window.Test3 = (function () {
         addDelayedEventListener: function () {
             let thatId = this.id,
                 thatFlagDiv = this.flagDiv,
-                thatCountry = this.country;
+                thatCountry = this.country,
+                timerId;
 
-            setTimeout(function () {
+            timerId = setTimeout(function () {
                 let flagHandle = document.getElementById("flag-" + thatId);
 
                 flagHandle.addEventListener("click", function() {
@@ -101,6 +103,7 @@ window.Test3 = (function () {
                     checkOrder(thatCountry);
                 });
             }, 5000);
+            timeouts.push(timerId);
         }
     };
 
@@ -153,15 +156,20 @@ window.Test3 = (function () {
     }
 
     function hideFlags() {
-        setTimeout(function () {
+        let timerId;
+
+        timerId = setTimeout(function () {
             flagObjects.forEach(flag => {
                 flag.hideFlag();
             });
         }, 5000);
+        timeouts.push(timerId);
     }
 
     function showGuessOrder() {
-        setTimeout(function () {
+        let timerId;
+
+        timerId = setTimeout(function () {
             let ol = document.createElement("ol");
 
             ol.innerText = "Flaggornas clickorder:";
@@ -173,6 +181,7 @@ window.Test3 = (function () {
             });
             content.appendChild(ol);
         }, 5000);
+        timeouts.push(timerId);
     }
 
     function memoryTest() {
@@ -200,6 +209,10 @@ window.Test3 = (function () {
             window.Test.currentTest = 3;
             firstRun = false;
         } else {
+            for (let i = 0; i < timeouts.length; i++) {
+                clearTimeout(timeouts[i]);
+            }
+            timeouts = [];
             flagObjects.forEach(flag => {
                 flag.resetFlag();
             });

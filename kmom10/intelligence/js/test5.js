@@ -8,6 +8,7 @@ window.Test5 = (function () {
         content = document.getElementById("content"),
         shapeCounter = 0,
         shapeObjects,
+        isClicked = false,
         timeouts = [],
 
         requirements = [
@@ -49,6 +50,20 @@ window.Test5 = (function () {
         shapeHtml: NaN,
         shapeDivHandle: NaN,
 
+        /**
+        *
+        * init
+        *
+        * @param  {string} shapeColor - innehåller klassvärden för färg och form
+        *      Tanken är att dessa skall användas för kontroll av om det är rätt objekt
+        *      enligt villkoren
+        * @param  {string} shapeColorInEn - samma som ovan fast på engelska
+        *       Dessa skall matcha shapes.css värdena.
+        * @param  {int} id - används för id attribut för div.
+        *
+        * Utifrån klassvärdena skapas div-element som skall rita objekt av rätt form och färg
+        * Till samtliga div lägger även box och size75 klass attribut
+        */
         init: function (shapeColor, shapeColorInEn, id) {
             this.shapeColor = shapeColor;
             this.id = id;
@@ -56,6 +71,16 @@ window.Test5 = (function () {
             this.shapeHtml = this.shapeColorToElement(shapeColorInEn);
         },
 
+        /**
+         *
+         * shapeColorToElement
+         *
+         * @param  {string} shapeColor  - innehåller klassvärden för färg och form
+         *      Tanken är att dessa skall användas för kontroll av om det är rätt objekt
+         *      enligt villkoren
+         * Utifrån klassvärdena skapas div-element som skall rita objekt av rätt form och färg
+         * Till samtliga div lägger även box och size75 klass attribut
+         */
         shapeColorToElement: function (shapeColor) {
             let div = document.createElement('div'),
                 classes = `box size75 ${shapeColor}`;
@@ -77,6 +102,10 @@ window.Test5 = (function () {
         }
     };
 
+    /**
+     * Initiera samtliga objekt (former) och lägg dem i en matris
+     * Detta upprepas efter varje Test.reset för att rensa event-rester
+     */
     function defineAllObjects() {
         for (let ix = 0; ix < shapes.length; ix += 1) {
             shapeObjects[ix] = Object.create(shapeObj);
@@ -99,8 +128,11 @@ window.Test5 = (function () {
     }
 
     function isCorrect() {
-        window.Test.partialScore += 1;
-        console.log("shapeCounter" + shapeCounter);
+        if (!isClicked) {
+            window.Test.partialScore += 1;
+            isClicked = true;
+            console.log("shapeClickedCounter: " + shapeCounter);
+        }
         shapeCounter += 1;
     }
 
@@ -128,6 +160,7 @@ window.Test5 = (function () {
 
         shapeObjects.forEach(function(shapeObj, ix) {
             timeouts.push(setTimeout(() => {
+                isClicked = false;
                 shapeObj.drawShape(divHandle);
             }, ix * 2000));
             timeouts.push(setTimeout(() => {
@@ -143,6 +176,8 @@ window.Test5 = (function () {
         rotateShapes();
     }
 
+    /**
+     */
     function startTest() {
         let h1 = "Uppfattningsförmåga",
             pContent = `I det här testet visas ett objekt under 1 sekund. Du skall välja att 
@@ -152,8 +187,6 @@ window.Test5 = (function () {
 
         tools.cleanContent();
         shapeCounter = 0;
-        shapeObjects = [];
-        defineAllObjects();
 
         if (firstRun) {
             window.Test.totalScore += window.Test.partialScore;
@@ -165,6 +198,8 @@ window.Test5 = (function () {
             }
             timeouts = [];
         }
+        shapeObjects = [];
+        defineAllObjects();
         console.log("total score: " + window.Test.totalScore);
         window.Test.partialScore = 0;
         tools.createHeader(h1, pContent);

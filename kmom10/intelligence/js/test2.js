@@ -4,6 +4,7 @@ window.Test2 = (function () {
     "use strict";
 
     let tools = window.Tools,
+        test = window.Test,
         startNumber = 0,
         correctAnswer = "",
         sequence = 10,

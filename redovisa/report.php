@@ -187,6 +187,109 @@ Generellt<?php
                     Dessutom är samtliga medlemsvariabler privata.
                 </p>
         </section>
+        <section class="kmom">
+            <h2>Kmom10</h2>
+            <h3>Allmänt</h3>
+            <p>
+                Redan från början har jag bestämt mig för att göra samtliga uppgifter.
+                Dessutom har jag valt att dela koden på följande sätt:
+            </p>
+            <ul>
+                <li>main.js - presenterar startsidan och startar första testet</li>
+                <li>test.js - håller i testdelarna, delresultat (för reset) och slutresultat. Main kunde ha varit integrerat i test men jag gillar att ha en huvuddel som heter main och det var tvång att ha även test, därav upplägget</li>
+                <li>textX.js - håller i specifika deltest (X=[1..5])</li>
+                <li>result.js - presenterar slutresultat</li>
+                <li>tool.js - bibliotek som håller i några funktioner som används av fler test samt som skulle kunna användas av andra javascript projekt</li>
+            </ul>
+            <p>
+                CSS är uppdelad i 3 filer
+            </p>
+            <ul>
+                <li>main-style.css - håller i det allmäna</li>
+                <li>flags.css - stödjer test (3) där flaggorna används</li>
+                <li>shapes.css - stödjer test (4,5) där olika former används</li>
+            </ul>
+            <p>
+                Ett annat val jag gjort tidigt i processen var att inte lägga krut på design utan att göra den väldigt enkel i början och sedan snygga till det utan att lägga för mycket tid på det. Så design är för det mesta inriktad mot funktionalitet och inte mot estetik.
+            </p>
+            <p>
+                Visning på skärmen ärr uppdelad i två delar övre delen med allmän information och nedre själva testet. I början av varje deltest samt vid reset rensas allt och partialScore-variabeln håller i testets delresultat för ett specifikt test.
+            </p>
+            <p>
+                Ett annat val tidigt i processen var att kommentera funktionerna först när jag är klar med samtliga deltest och att inte lägga varken krut eller särskilt mycket di på det. Genomgående har jag försökt använda förklarande namn och göra koden så ren som möjligt och man bör inte beskriva det som i princip redan är beskrivet i koden.
+            </p>
+            <p>
+                Hemliga intelligensformeln är väldigt enkel: resultatet visar antal tjänade poäng och högsta antalet.
+            </p>
+            <h3>Deltest 1: Tipsfrågor</h3>
+            <p>
+                Det här testet var enkelt att förstå. Det tog mig endå en del tid att komma igång efter att jag lagt det åt sidan i nästan två veckor. Så det var en bra uppvärmning för senare deltest.<br>
+                Olika frågor och alternativ hålls i två olika vektorer (array) plus en tredje vektor som håller i rätt alternativ för varje svar.
+                Vektorn som håller i alternativ består av element som är själva 3D vektorer med 3 olika alternativa svar.
+            </p>
+            <p>
+                Programmet stegar igenom frågorna/alternativen, presenterar en och en, läser av svaren och lagrar delresultat i test.partialScore.<br>
+                eventListner för klick anropar showResult som i sin tur visar rätt eller fel resultat utifrån vad man klickat på och vad det rätta alternativet för den frågan är.
+            </p>
+            <h3>Deltest 2: Fizzbuzz</h3>
+            <p>
+                Det här testet var lättas att implementera. Jag fick slå upp vad Fizzbuzz är men sedan gick det smidigt att få till det.
+            </p>
+            <p>
+                Från och med deltest 2 i början av testet kontrolleras om det är första gången det testet körs, dva. att man inte kört reset, adderas delsumman från föregående test till den totala summan (resultatet). Därefter nollställs den.  Detta för att undvika att addera delsumman flera gånger på grund av reset.
+            </p>
+            <p>
+                Själva koden slumpar fram början av sekvensen (vars längd bestäms av en variabel sequence = 10) bestäms inom gränsen [20-100] med hjälp av tools.getRandomInt(20, 100).
+            </p>
+            <p>
+                Funktionen generateFizzBuzz genererar sekvensen och sparar sista värdet som inte kommer visas för skärmen utan används för att kontrollera om svaret är rätt.<br>
+                Själva eventListner är en s.k. selft-invoked funktion för att den är väldigt enkel. Den anropar <strong>showResults</strong> utifrån om svaret är rätt eller fel.
+            </p>
+            <h3>Deltest 3: Minne</h3>
+            <p>
+                I deltest har jag återanvänt flaggorna från tidigare kmoms och jag använder bara 4 flaggor. En förändring är att jag anpassat css så att specifika flaggornas storlekar är i procent så att storleken blir skalbar mot huvudbehållaren.<br>
+                Sedan har jag experimenterat med storlekarna så att jag får samtliga flaggor i en rad vilket gav 75px bredden samt fönstrets totala bredd på 950px (med alla marginaler ryms samtliga flaggor i samma rad).
+            </p>
+            <p>
+                Varje flagga skapas som ett eget flagg-objekt. En del av koden är återanvänd från tidigare kmom men med en hel del förändringar och förenklingar dels för att jag tittade på koden med nya ögon och dels att funktionaliteten var enklare så en hel del kunde ha rensats bort.
+            </p>
+            <p>
+                Testet innehåller ingen slumpmässighet utan det är samma test som körs hela tiden.
+            </p>
+            <p>
+                I deltest 3 - 5 upptäckte jag i efterhand problem med events efter reset så jag kämpade en del med att få till det. För detta deltest blev det en <strong>resetFlag</strong> funktion för varje flaggobjekt och att loopa igenom vektorn och anropa reset för varje objekt i början efter varje reset.
+            </p>
+            <p>
+            </p>
+            <h3>Deltest 4: Visuell förmåga och läsförståelse</h3>
+            <p>
+                Även här samt i deltest 5 återanvände jag css från tidigare kursmoment. Det som var nytt var triangeln och fyrkanten. Så det fick kämpa lite med att få till triangeln. 
+            </p>
+            <p>
+                Testet innehåller ingen slumpmässighet utan det är samma test som körs hela tiden.
+            </p>
+            <p>
+                Ett problem jag upptäckt generellt samband med reset var att resultat visades för fort eller i tid och otid.<br>
+                Efter en del felsökning insåg jag att det var relaterat till <strong>setTimeout</strong> funktionen (15 sekunder) som kördes oavsett även om avslutade testet för att man gissat fel. Så när man gjort reset triggades den efter att den återstående tiden skulle löpa ut.
+            </p>
+            <p>
+                Till slut gjorde jag om koden genom att lägga samtliga form-objekt in i en vektor som då skapas i en separat funktion <strong>defineAllObjects</strong> samt samtliga <strong>setTimeout id:er</strong> sparas i en anna vektor och i början av start-funktionen rensas samtliga events med hjälp av <strong>clearTimeout</strong>-funktionen.
+            <p>
+            <h3>Deltest 5: Uppfattningsförmåga</h3>
+            <p>
+                Här upptäckte jag att de angivna villkoren hade enbart triviala lösningar men har valt att implementera det enligt specifikationen. Detta innebär att samtliga visade bilder uppfyller villkoren.<br>
+                Så kontrollfunktionen <strong>isCorrect</strong> som triggas av klick på objektet räknar upp resultat varje gång den anropas.
+            </p>
+            <p>
+                Här återanvände jag css från deltest 3. Även här körs samma test hela tiden dvs. det finns ingen slumpmässighet.
+            </p>
+            <p>
+                Visning av flaggorna och paus av en sekund löste jag genom att schemalägga körning av <strong>drawShape</strong> för varje form i en slinga där jag lagt visning av nytt objekt varannan sekund med jämna intervall, start vid 0 och paus (rensning av innehållet med <strong>divHandle.innerHTML = ""</strong>) med udda intervall med start 1. <br>
+                <strong>showResutl</strong> schemalades att köras efter 20 sekunder.
+            </p>
+            <p>
+            </p>
+        </section>
     </article>
 </main>
 
